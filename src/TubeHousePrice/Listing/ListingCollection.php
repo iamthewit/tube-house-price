@@ -33,6 +33,18 @@ class ListingCollection
         return $collection;
     }
 
+    public function averagePrice(): float
+    {
+        $totalPrice = 0;
+
+        /** @var ListingModel $listing */
+        foreach ($this->listings as $listing) {
+            $totalPrice += $listing->price()->minorUnitValue();
+        }
+
+        return $totalPrice / count($this->listings);
+    }
+
     private function addListing(ListingModel $listing)
     {
         $this->listings[] = $listing;

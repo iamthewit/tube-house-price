@@ -22,4 +22,14 @@ class ListingModel
         return new static(uniqid(), $price, $location);
     }
 
+    public function price()
+    {
+        return $this->price;
+    }
+
+    public function location()
+    {
+        return $this->location;
+    }
+
 }
