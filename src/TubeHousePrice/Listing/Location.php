@@ -2,6 +2,8 @@
 
 namespace TubeHousePrice\Listing;
 
+use TubeHousePrice\Listing\Coordinate\Latitude;
+use TubeHousePrice\Listing\Coordinate\Longitude;
 
 class Location
 {

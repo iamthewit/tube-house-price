@@ -2,6 +2,8 @@
 
 namespace TubeHousePrice\Listing;
 
+use TubeHousePrice\Listing\Exception\ListingCollectionCreationException;
+
 class ListingCollection
 {
     private $listings;

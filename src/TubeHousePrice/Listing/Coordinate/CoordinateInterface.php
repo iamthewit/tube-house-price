@@ -1,6 +1,6 @@
 <?php
 
-namespace TubeHousePrice\Listing;
+namespace TubeHousePrice\Listing\Coordinate;
 
 
 interface CoordinateInterface

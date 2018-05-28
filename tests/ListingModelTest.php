@@ -1,11 +1,12 @@
 <?php
 
-use TubeHousePrice\Listing\Latitude;
-use TubeHousePrice\Listing\ListingModel;
 use PHPUnit\Framework\TestCase;
+
+use TubeHousePrice\Listing\Coordinate\Latitude;
+use TubeHousePrice\Listing\Coordinate\Longitude;
+use TubeHousePrice\Listing\Currency\PoundSterling;
+use TubeHousePrice\Listing\ListingModel;
 use TubeHousePrice\Listing\Location;
-use TubeHousePrice\Listing\Longitude;
-use TubeHousePrice\Listing\PoundSterling;
 use TubeHousePrice\Listing\Price;
 
 class ListingModelTest extends TestCase

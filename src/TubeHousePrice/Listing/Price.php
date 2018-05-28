@@ -2,6 +2,8 @@
 
 namespace TubeHousePrice\Listing;
 
+use TubeHousePrice\Listing\Currency\CurrencyInterface;
+
 class Price
 {
     private $currency;

@@ -1,8 +1,8 @@
 <?php
 
-namespace TubeHousePrice\Listing;
+namespace TubeHousePrice\Listing\Coordinate;
 
-class Latitude implements CoordinateInterface
+class Longitude implements CoordinateInterface
 {
     private $value;
 
