@@ -1,0 +1,31 @@
+Basic listing model complete
+- Can create a collection of listings
+- Listings contain basic info: lat, lng, price
+- Decided on Sqlite DB
+
+Next Steps
+- Get repository creating and updating records in sqlite DB
+
+
+
+General Notes:
+
+Dependencies
+- DI container
+
+Database
+- Use in memory?
+- Migrations system? Run migrations before tests
+
+Listing Repository
+- Find sources to seed the DB. Property websites etc
+
+Listing Importer
+- Create ListingImporter class to extract data from sources and prepare data to be stored in repository
+
+Listing Factory
+- Create factory to transform stored listing data into ListingModel objects and ListingCollection objects
+
+
+Further down the line
+- Add address as listing property

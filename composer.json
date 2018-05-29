@@ -5,7 +5,8 @@
         }
     },
     "require": {
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "catfan/medoo": "^1.5"
     },
     "require-dev": {
         "phpunit/phpunit": "^7",
