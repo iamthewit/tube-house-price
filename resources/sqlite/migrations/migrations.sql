@@ -1,4 +1,4 @@
-CREATE TABLE `listing` (
+CREATE TABLE `listings` (
 	`id`	TEXT,
 	`currency_code`	TEXT,
 	`currency_minor_unit_value`	INTEGER,

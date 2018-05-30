@@ -4,7 +4,7 @@ namespace TubeHousePrice\Listing\Repository;
 
 use Medoo\Medoo;
 
-require '../../../../vendor/autoload.php';
+require __DIR__.'/../../../../vendor/autoload.php';
 
 class SqliteListingRepository implements ListingRepositoryInterface
 {
@@ -13,6 +13,29 @@ class SqliteListingRepository implements ListingRepositoryInterface
     private $currencyMinorUnitValue;
     private $latitude;
     private $longitude;
+
+    private $tableName = 'listings';
+
+    /**
+     * SqliteListingRepository constructor.
+     *
+     * @param string $id
+     * @param string $currencyCode
+     * @param int    $currencyMinorUnitValue
+     * @param float  $latitude
+     * @param float  $longitude
+     */
+    public function __construct(string $id, string $currencyCode, int $currencyMinorUnitValue, float $latitude, float $longitude)
+    {
+        // TODO: validation
+
+        $this->id                     = $id;
+        $this->currencyCode           = $currencyCode;
+        $this->currencyMinorUnitValue = $currencyMinorUnitValue;
+        $this->latitude               = $latitude;
+        $this->longitude              = $longitude;
+    }
+
 
     /**
      * @return mixed
@@ -29,6 +52,7 @@ class SqliteListingRepository implements ListingRepositoryInterface
      */
     public function setId($id): ListingRepositoryInterface
     {
+        // TODO: validation
         $this->id = $id;
         return $this;
     }
@@ -48,6 +72,7 @@ class SqliteListingRepository implements ListingRepositoryInterface
      */
     public function setCurrencyCode($currencyCode): ListingRepositoryInterface
     {
+        // TODO: validation
         $this->currencyCode = $currencyCode;
         return $this;
     }
@@ -67,6 +92,7 @@ class SqliteListingRepository implements ListingRepositoryInterface
      */
     public function setCurrencyMinorUnitValue($currencyMinorUnitValue): ListingRepositoryInterface
     {
+        // TODO: validation
         $this->currencyMinorUnitValue = $currencyMinorUnitValue;
         return $this;
     }
@@ -86,6 +112,7 @@ class SqliteListingRepository implements ListingRepositoryInterface
      */
     public function setLatitude($latitude): ListingRepositoryInterface
     {
+        // TODO: validation
         $this->latitude = $latitude;
         return $this;
     }
@@ -105,23 +132,56 @@ class SqliteListingRepository implements ListingRepositoryInterface
      */
     public function setLongitude($longitude): ListingRepositoryInterface
     {
+        // TODO: validation
         $this->longitude = $longitude;
         return $this;
     }
 
-    public function commit(): void
+    public function find(): ListingRepositoryInterface
     {
-        $database = new Medoo([
-            'database_type' => 'sqlite',
-            'database_file' => '../../../../resources/sqlite/database/tube_house_prices.db',
-        ]);
-
-        // check if a row in the DB exists with this id
-
-        // if so update
-
-        // otherwise create
+        // TODO: Implement find() method.
     }
 
 
+    public function commit(): void
+    {
+        $databaseConnection = $this->getDatabaseConnection();
+        $where = ['id' => $this->getId()];
+
+        // check if a row in the DB exists with this id
+        if ($databaseConnection->has($this->tableName, $where)) {
+            // update
+            $databaseConnection->update($this->tableName, $this->asArray(), $where);
+        }
+
+        // create
+        $databaseConnection->insert($this->tableName, $this->asArray());
+    }
+
+    /**
+     * Return a representation of ListingRepository as an array.
+     *
+     * @return array
+     */
+    public function asArray(): array
+    {
+        return [
+            'id'                        => $this->getId(),
+            'currency_code'             => $this->getCurrencyCode(),
+            'currency_minor_unit_value' => $this->getCurrencyMinorUnitValue(),
+            'latitude'                  => $this->getLatitude(),
+            'longitude'                 => $this->getLongitude(),
+        ];
+    }
+
+    /**
+     * @return Medoo
+     */
+    private function getDatabaseConnection(): Medoo
+    {
+        return new Medoo([
+            'database_type' => 'sqlite',
+            'database_file' => __DIR__.'/../../../../resources/sqlite/database/tube_house_prices.db',
+        ]);
+    }
 }
