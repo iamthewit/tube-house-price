@@ -6,7 +6,7 @@ use TubeHousePrice\Listing\Coordinate\Latitude;
 use TubeHousePrice\Listing\Coordinate\Longitude;
 use TubeHousePrice\Listing\Currency\PoundSterling;
 use TubeHousePrice\Listing\ListingCollection;
-use TubeHousePrice\Listing\ListingModel;
+use TubeHousePrice\Listing\Listing;
 use TubeHousePrice\Listing\Location;
 use TubeHousePrice\Listing\Price;
 
@@ -61,7 +61,7 @@ class ListingCollectionTest extends TestCase
         $latitude = new Latitude($this->faker->latitude);
         $location = Location::createFromLongitudeAndLatitude($longitude, $latitude);
 
-        $listing = ListingModel::createFromPriceAndLocation($price, $location);
+        $listing = Listing::createFromPriceAndLocation($price, $location);
 
         return $listing;
     }
@@ -82,7 +82,7 @@ class ListingCollectionTest extends TestCase
         $latitude = new Latitude($this->faker->latitude);
         $location = Location::createFromLongitudeAndLatitude($longitude, $latitude);
 
-        $listing = ListingModel::createFromPriceAndLocation($price, $location);
+        $listing = Listing::createFromPriceAndLocation($price, $location);
 
         return $listing;
     }

@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 use TubeHousePrice\Listing\Coordinate\Latitude;
 use TubeHousePrice\Listing\Coordinate\Longitude;
 use TubeHousePrice\Listing\Currency\PoundSterling;
-use TubeHousePrice\Listing\ListingModel;
+use TubeHousePrice\Listing\Listing;
 use TubeHousePrice\Listing\Location;
 use TubeHousePrice\Listing\Price;
 
@@ -19,8 +19,8 @@ class ListingModelTest extends TestCase
         $latitude = new Latitude('	51.509865');
         $location = Location::createFromLongitudeAndLatitude($longitude, $latitude);
 
-        $listing = ListingModel::createFromPriceAndLocation($price, $location);
+        $listing = Listing::createFromPriceAndLocation($price, $location);
 
-        $this->assertInstanceOf(ListingModel::class, $listing);
+        $this->assertInstanceOf(Listing::class, $listing);
     }
 }

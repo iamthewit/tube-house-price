@@ -2,7 +2,7 @@
 
 namespace TubeHousePrice\Listing;
 
-class ListingModel
+class Listing
 {
     private $id;
 

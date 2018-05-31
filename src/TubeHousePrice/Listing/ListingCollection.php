@@ -23,7 +23,7 @@ class ListingCollection
     {
         $collection = new static();
         foreach ($listings as $listing) {
-            if (!is_a($listing, ListingModel::class)) {
+            if (!is_a($listing, Listing::class)) {
                 throw new ListingCollectionCreationException(
                     'Can only create a ListingCollection from ListingModel objects.'
                 );
@@ -39,7 +39,7 @@ class ListingCollection
     {
         $totalPrice = 0;
 
-        /** @var ListingModel $listing */
+        /** @var Listing $listing */
         foreach ($this->listings as $listing) {
             $totalPrice += $listing->price()->minorUnitValue();
         }
@@ -47,7 +47,7 @@ class ListingCollection
         return $totalPrice / count($this->listings);
     }
 
-    private function addListing(ListingModel $listing)
+    private function addListing(Listing $listing)
     {
         $this->listings[] = $listing;
     }
