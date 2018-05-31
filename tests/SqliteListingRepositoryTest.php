@@ -1,6 +1,5 @@
 <?php
 
-use Medoo\Medoo;
 use PHPUnit\Framework\TestCase;
 
 use TubeHousePrice\Application\DatabaseConnection\SqliteConnection;
@@ -9,7 +8,6 @@ use TubeHousePrice\Listing\Repository\SqliteListingRepository;
 
 class SqliteListingRepositoryTest extends TestCase
 {
-
 //    public function testFind()
 //    {
 //
@@ -25,7 +23,7 @@ class SqliteListingRepositoryTest extends TestCase
         $faker = \Faker\Factory::create();
 
         $listingRepository = new SqliteListingRepository($this->databaseConnection());
-    
+        
         $listingEntity = new ListingEntity();
         $listingEntity->setId(uniqid());
         $listingEntity->setCurrencyCode($faker->currencyCode);
@@ -63,9 +61,9 @@ class SqliteListingRepositoryTest extends TestCase
     }
 
     /**
-     * @return Medoo
+     * @return SqliteConnection
      */
-    private function databaseConnection(): Medoo {
+    private function databaseConnection(): SqliteConnection {
         return new SqliteConnection(__DIR__.'/../resources/sqlite/database/tube_house_prices.db');
     }
 

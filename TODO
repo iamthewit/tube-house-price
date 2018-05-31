@@ -9,13 +9,13 @@ Next Steps
 - Add validation to listing repository
 
 - Create Database Connection class
-    - Class should be injected into repositories
+    - Class should be injected into repositories =
     - Class should use config values
 
-    class Repository(SqliteConnection $connection)
+    class Repository(SqliteConnection $connection) =
 
-    class SqliteConnection(string $pathToDatabaseFile)
-        - class can hard code db type to sqlite
+    class SqliteConnection(string $pathToDatabaseFile) =
+        - class can hard code db type to sqlite =
         - can use DI to inject db path by checking value in config
 
     - When testing use in memory sqlite db
@@ -42,7 +42,6 @@ Listing Importer
 
 Listing Factory
 - Create factory to transform stored listing data into ListingModel objects and ListingCollection objects
-
 
 Further down the line
 - Add address as listing property
