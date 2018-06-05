@@ -3,27 +3,47 @@
 namespace TubeHousePrice\Listing\Repository;
 
 use TubeHousePrice\Application\DatabaseConnection\SqliteConnection;
+use TubeHousePrice\Listing\Exception\ListingNotFoundInRepositoryException;
 use TubeHousePrice\Listing\ListingEntity;
-
-require __DIR__.'/../../../../vendor/autoload.php';
 
 class SqliteListingRepository implements ListingRepositoryInterface
 {
     private $databaseConnection;
     private $tableName = 'listings';
-
+    private $columns = ['id', 'currency_code', 'currency_minor_unit_value', 'latitude', 'longitude'];
     
+    /**
+     * SqliteListingRepository constructor.
+     *
+     * @param SqliteConnection $databaseConnection
+     */
     public function __construct(SqliteConnection $databaseConnection)
     {
         $this->databaseConnection = $databaseConnection;
     }
-
-    public function find(): ListingRepositoryInterface
+    
+    /**
+     * @param $id
+     *
+     * @return ListingEntity
+     * @throws ListingNotFoundInRepositoryException
+     */
+    public function find($id): ListingEntity
     {
-        // TODO: Implement find() method.
+        $where = ['id' => $id];
+        
+        $result = $this->databaseConnection->select($this->tableName, $this->columns, $where);
+        
+        if(!$result || count($result) === 0) {
+            throw new ListingNotFoundInRepositoryException();
+        }
+        
+        return ListingEntity::fromArray($result[0]);
     }
-
-
+    
+    /**
+     * @param ListingEntity $entity
+     */
     public function commit(ListingEntity $entity): void
     {
         $where = ['id' => $entity->getId()];

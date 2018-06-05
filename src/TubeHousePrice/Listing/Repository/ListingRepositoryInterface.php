@@ -6,7 +6,7 @@ use TubeHousePrice\Listing\ListingEntity;
 
 interface ListingRepositoryInterface
 {
-    public function find(): ListingRepositoryInterface;
+    public function find($id): ListingEntity;
     
     /**
      * Commit the listing to storage.

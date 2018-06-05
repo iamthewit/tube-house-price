@@ -125,4 +125,20 @@ class ListingEntity
             'longitude'                 => $this->getLongitude(),
         ];
     }
+    
+    /**
+     * @param array $fields
+     *
+     * @return ListingEntity
+     */
+    public static function fromArray(array $fields) {
+        // TODO: validate $fields has all keys and values we need
+        
+        $listingEntity = new static();
+        return $listingEntity->setId($fields['id'])
+            ->setCurrencyCode($fields['currency_code'])
+            ->setCurrencyMinorUnitValue($fields['currency_minor_unit_value'])
+            ->setLatitude($fields['latitude'])
+            ->setLongitude($fields['longitude']);
+    }
 }

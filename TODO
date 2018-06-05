@@ -4,7 +4,12 @@ Basic listing model complete
 - Decided on Sqlite DB
 
 Next Steps
-- Get repository creating and updating records in sqlite DB
+
+- Implement ListingFactory
+
+- Implement Currency Code Factory
+
+- Get repository creating and updating records in sqlite DB =
 
 - Add validation to listing repository
 

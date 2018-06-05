@@ -22,6 +22,11 @@ class Listing
         return new static(uniqid(), $price, $location);
     }
 
+    public static function createFromIdAndPriceAndLocation($id, Price $price, Location $location): self
+    {
+        return new static($id, $price, $location);
+    }
+    
     public function price()
     {
         return $this->price;

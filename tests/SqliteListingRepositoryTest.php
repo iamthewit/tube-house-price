@@ -8,10 +8,31 @@ use TubeHousePrice\Listing\Repository\SqliteListingRepository;
 
 class SqliteListingRepositoryTest extends TestCase
 {
-//    public function testFind()
-//    {
-//
-//    }
+    public function testFind()
+    {
+        $faker = \Faker\Factory::create();
+    
+        $listingRepository = new SqliteListingRepository($this->databaseConnection());
+    
+        $listingEntity = new ListingEntity();
+        $listingEntity->setId(uniqid());
+        $listingEntity->setCurrencyCode($faker->currencyCode);
+        $listingEntity->setCurrencyMinorUnitValue($faker->numberBetween(0, 1000000000));
+        $listingEntity->setLatitude($faker->latitude);
+        $listingEntity->setLongitude($faker->longitude);
+    
+        $listingRepository->commit($listingEntity);
+        
+        $foundEntity = $listingRepository->find($listingEntity->getId());
+        
+        $this->assertEquals($listingEntity, $foundEntity);
+    }
+    
+    public function testItThrowsExceptionWhenFindFails()
+    {
+        // TODO
+    }
+    
 //
 //    public function testAsArray()
 //    {
