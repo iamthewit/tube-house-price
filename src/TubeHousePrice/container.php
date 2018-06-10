@@ -7,8 +7,7 @@ use TubeHousePrice\Listing\Repository\SqliteListingRepository;
 $container = new League\Container\Container;
 
 $container->add('sqlite_database_connection', function () {
-    // TODO: get this value from config
-    $pathToDatabaseFile = __DIR__.'/../../resources/sqlite/database/tube_house_prices.db';
+    $pathToDatabaseFile = getenv('PROJECT_ROOT_PATH').getenv('SQLITE_DATABASE_PATH');
     return new SqliteConnection($pathToDatabaseFile);
 });
 

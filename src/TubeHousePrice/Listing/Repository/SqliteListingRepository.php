@@ -5,6 +5,7 @@ namespace TubeHousePrice\Listing\Repository;
 use TubeHousePrice\Application\DatabaseConnection\SqliteConnection;
 use TubeHousePrice\Listing\Exception\ListingNotFoundInRepositoryException;
 use TubeHousePrice\Listing\ListingEntity;
+use TubeHousePrice\Listing\ListingEntityCollection;
 
 class SqliteListingRepository implements ListingRepositoryInterface
 {
@@ -40,6 +41,31 @@ class SqliteListingRepository implements ListingRepositoryInterface
         
         return ListingEntity::fromArray($result[0]);
     }
+    
+    /**
+     * @param array $where
+     *
+     * @return ListingEntityCollection
+     * @throws ListingNotFoundInRepositoryException
+     */
+    public function findWhere(array $where): ListingEntityCollection
+    {
+        $results = $this->databaseConnection->select($this->tableName, $this->columns, $where);
+    
+        if(!$results || count($results) === 0) {
+            throw new ListingNotFoundInRepositoryException();
+        }
+        
+        $collection = new ListingEntityCollection();
+        
+        foreach ($results as $result) {
+            $listingEntity = ListingEntity::fromArray($result);
+            $collection->add($listingEntity);
+        }
+        
+        return $collection;
+    }
+    
     
     /**
      * @param ListingEntity $entity

@@ -3,10 +3,13 @@
 namespace TubeHousePrice\Listing\Repository;
 
 use TubeHousePrice\Listing\ListingEntity;
+use TubeHousePrice\Listing\ListingEntityCollection;
 
 interface ListingRepositoryInterface
 {
     public function find($id): ListingEntity;
+    
+    public function findWhere(array $where): ListingEntityCollection;
     
     /**
      * Commit the listing to storage.

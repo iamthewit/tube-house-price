@@ -1,15 +1,18 @@
-Basic listing model complete
-- Can create a collection of listings
-- Listings contain basic info: lat, lng, price
-- Decided on Sqlite DB
+TODO:
 
-Next Steps
+- Add ListingEntityCollection
 
-- Implement ListingFactory =
+- Add EntityInterface Class that ListingEntity implements
 
-- Implement Currency Code Factory =
+- Add generic EntityCollection class that ListingEntityCollection extends
+    - Can add the array iterator stuff in here
 
-- Get repository creating and updating records in sqlite DB =
+- Move repository and entit code into the Application namespace
+
+- Add ListingService Class
+    - Interact between repo and domain layer
+    - Pull entities from the DB, transform them into domain objects
+    - Pass domain listing objects into service, store the listing objects as listing entity objects in the repo
 
 - Add validation to listing repository
 
@@ -29,6 +32,11 @@ Next Steps
 
 - config / environment variables
 
+- Add timestamps to ListingEntity (created_at, updated_at)
+
+- Move tests into namespaced directories
+
+- Add a router
 
 General Notes:
 
