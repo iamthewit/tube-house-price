@@ -1,13 +1,11 @@
 TODO:
 
-- Add ListingEntityCollection
-
 - Add EntityInterface Class that ListingEntity implements
 
 - Add generic EntityCollection class that ListingEntityCollection extends
     - Can add the array iterator stuff in here
 
-- Move repository and entit code into the Application namespace
+- Move repository and entity code into the Application namespace
 
 - Add ListingService Class
     - Interact between repo and domain layer
@@ -16,21 +14,9 @@ TODO:
 
 - Add validation to listing repository
 
-- Create Database Connection class
-    - Class should be injected into repositories =
-    - Class should use config values
-
-    class Repository(SqliteConnection $connection) =
-
-    class SqliteConnection(string $pathToDatabaseFile) =
-        - class can hard code db type to sqlite =
-        - can use DI to inject db path by checking value in config
-
-    - When testing use in memory sqlite db
-        - run migrations before each test
-        - tear down db after each test
-
-- config / environment variables
+- When testing use in memory sqlite db
+    - run migrations before each test
+    - tear down db after each test
 
 - Add timestamps to ListingEntity (created_at, updated_at)
 
@@ -39,9 +25,6 @@ TODO:
 - Add a router
 
 General Notes:
-
-Dependencies
-- DI container
 
 Database
 - Use in memory?
@@ -52,9 +35,6 @@ Listing Repository
 
 Listing Importer
 - Create ListingImporter class to extract data from sources and prepare data to be stored in repository
-
-Listing Factory
-- Create factory to transform stored listing data into ListingModel objects and ListingCollection objects
 
 Further down the line
 - Add address as listing property
