@@ -27,6 +27,11 @@ class Listing
         return new static($id, $price, $location);
     }
     
+    public function id()
+    {
+        return $this->id;
+    }
+    
     public function price()
     {
         return $this->price;

@@ -21,5 +21,15 @@ class Location
     {
         return new static($longitude, $latitude);
     }
+    
+    public function longitude()
+    {
+        return $this->longitude;
+    }
+    
+    public function latitude()
+    {
+        return $this->latitude;
+    }
 
 }

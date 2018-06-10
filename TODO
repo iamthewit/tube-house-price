@@ -5,9 +5,9 @@ Basic listing model complete
 
 Next Steps
 
-- Implement ListingFactory
+- Implement ListingFactory =
 
-- Implement Currency Code Factory
+- Implement Currency Code Factory =
 
 - Get repository creating and updating records in sqlite DB =
 
