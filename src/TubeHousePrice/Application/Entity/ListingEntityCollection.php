@@ -2,7 +2,7 @@
 
 namespace TubeHousePrice\Application\Entity;
 
-class ListingEntityCollection
+class ListingEntityCollection extends AbstractEntityCollection
 {
     private $listings = [];
     

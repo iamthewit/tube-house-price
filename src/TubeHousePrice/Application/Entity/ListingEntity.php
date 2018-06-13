@@ -2,7 +2,7 @@
 
 namespace TubeHousePrice\Application\Entity;
 
-class ListingEntity
+class ListingEntity implements EntityInterface
 {
     private $id;
     private $currencyCode;
@@ -111,7 +111,7 @@ class ListingEntity
     }
     
     /**
-     * Return a representation of ListingRepository as an array.
+     * Return a representation of ListingEntity as an array.
      *
      * @return array
      */

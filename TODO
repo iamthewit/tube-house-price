@@ -1,7 +1,5 @@
 TODO:
 
-- Add EntityInterface Class that ListingEntity implements
-
 - Add generic EntityCollection class that ListingEntityCollection extends
     - Can add the array iterator stuff in here
 
