@@ -1,6 +1,6 @@
 <?php
 
-namespace TubeHousePrice\Listing;
+namespace TubeHousePrice\Application;
 
 class ListingEntity
 {

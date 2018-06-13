@@ -1,11 +1,11 @@
 <?php
 
-namespace TubeHousePrice\Listing\Repository;
+namespace TubeHousePrice\Application\Repository;
 
 use TubeHousePrice\Application\DatabaseConnection\SqliteConnection;
-use TubeHousePrice\Listing\Exception\ListingNotFoundInRepositoryException;
-use TubeHousePrice\Listing\ListingEntity;
-use TubeHousePrice\Listing\ListingEntityCollection;
+use TubeHousePrice\Application\Exception\ListingNotFoundInRepositoryException;
+use TubeHousePrice\Application\ListingEntity;
+use TubeHousePrice\Application\ListingEntityCollection;
 
 class SqliteListingRepository implements ListingRepositoryInterface
 {

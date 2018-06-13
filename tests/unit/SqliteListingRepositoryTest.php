@@ -3,10 +3,10 @@
 use PHPUnit\Framework\TestCase;
 
 use TubeHousePrice\Application\DatabaseConnection\SqliteConnection;
-use TubeHousePrice\Listing\Exception\ListingNotFoundInRepositoryException;
-use TubeHousePrice\Listing\ListingEntity;
-use TubeHousePrice\Listing\ListingEntityCollection;
-use TubeHousePrice\Listing\Repository\SqliteListingRepository;
+use TubeHousePrice\Application\Exception\ListingNotFoundInRepositoryException;
+use TubeHousePrice\Application\ListingEntity;
+use TubeHousePrice\Application\ListingEntityCollection;
+use TubeHousePrice\Application\Repository\SqliteListingRepository;
 
 class SqliteListingRepositoryTest extends TestCase
 {

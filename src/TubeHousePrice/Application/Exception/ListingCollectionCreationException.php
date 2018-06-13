@@ -1,6 +1,6 @@
 <?php
 
-namespace TubeHousePrice\Listing\Exception;
+namespace TubeHousePrice\Application\Exception;
 
 class ListingCollectionCreationException extends \Exception
 {

@@ -9,7 +9,7 @@ use TubeHousePrice\Listing\Listing;
 use TubeHousePrice\Listing\Location;
 use TubeHousePrice\Listing\Price;
 
-class ListingModelTest extends TestCase
+class ListingTest extends TestCase
 {
     public function testListingModelIsCreateFromPriceAndLocation()
     {

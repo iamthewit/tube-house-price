@@ -7,6 +7,10 @@ TODO:
 
 - Move repository and entity code into the Application namespace
 
+- Split listing factory into two listing factories
+    - one to create listings from listing entities
+    - one to create listing entities from listings
+
 - Add ListingService Class
     - Interact between repo and domain layer
     - Pull entities from the DB, transform them into domain objects
@@ -38,3 +42,8 @@ Listing Importer
 
 Further down the line
 - Add address as listing property
+
+Static Analysis
+ - PHPStan?
+
+Code Coverage Report from PHPUnit

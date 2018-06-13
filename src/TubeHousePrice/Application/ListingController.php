@@ -2,7 +2,7 @@
 
 namespace TubeHousePrice\Application;
 
-use TubeHousePrice\Listing\Repository\ListingRepositoryInterface;
+use TubeHousePrice\Application\Repository\ListingRepositoryInterface;
 
 class ListingController
 {

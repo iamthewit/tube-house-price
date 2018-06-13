@@ -1,6 +1,6 @@
 <?php
 
-use TubeHousePrice\Listing\ListingEntity;
+use TubeHousePrice\Application\ListingEntity;
 use PHPUnit\Framework\TestCase;
 
 class ListingEntityTest extends TestCase
