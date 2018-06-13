@@ -2,6 +2,7 @@
 
 namespace TubeHousePrice\Listing;
 
+use TubeHousePrice\Application\Entity\ListingEntity;
 use TubeHousePrice\Listing\Currency\CurrencyFactory;
 
 class ListingFactory
@@ -21,24 +22,5 @@ class ListingFactory
         $location = Location::createFromLongitudeAndLatitude($listingEntity->getLongitude(), $listingEntity->getLatitude());
         
         return Listing::createFromIdAndPriceAndLocation($listingEntity->getId(), $price, $location);
-    }
-    
-    /**
-     * Transform Listing into ListingEntity
-     *
-     * @param Listing $listing
-     *
-     * @return ListingEntity
-     */
-    public static function createListingEntity(Listing $listing)
-    {
-        $listingEntity = new ListingEntity();
-        $listingEntity->setId($listing->id());
-        $listingEntity->setCurrencyCode($listing->price()->currency()->code());
-        $listingEntity->setCurrencyMinorUnitValue($listing->price()->minorUnitValue());
-        $listingEntity->setLongitude($listing->location()->longitude());
-        $listingEntity->setLatitude($listing->location()->latitude());
-        
-        return $listingEntity;
     }
 }
