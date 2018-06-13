@@ -1,11 +1,6 @@
 TODO:
 
-- Add generic EntityCollection class that ListingEntityCollection extends
-    - Can add the array iterator stuff in here
-
-- Split listing factory into two listing factories
-    - one to create listings from listing entities
-    - one to create listing entities from listings
+- Add array iterator code to AbstractEntityCollection class
 
 - Add ListingService Class
     - Interact between repo and domain layer
@@ -19,12 +14,17 @@ TODO:
     - tear down db after each test
 
 - Add timestamps to ListingEntity (created_at, updated_at)
+    - create a trait for this instead of adding to the interface?
 
 - Move tests into namespaced directories
 
 - Add a router
 
 General Notes:
+
+Listing\ListingFactory
+ - Should this code live inside the Listing domain object?
+ - Should the listing domain object have any knowledge about listing entities?
 
 Database
 - Use in memory?
