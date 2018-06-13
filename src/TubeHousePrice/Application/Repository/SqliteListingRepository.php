@@ -4,8 +4,8 @@ namespace TubeHousePrice\Application\Repository;
 
 use TubeHousePrice\Application\DatabaseConnection\SqliteConnection;
 use TubeHousePrice\Application\Exception\ListingNotFoundInRepositoryException;
-use TubeHousePrice\Application\ListingEntity;
-use TubeHousePrice\Application\ListingEntityCollection;
+use TubeHousePrice\Application\Entity\ListingEntity;
+use TubeHousePrice\Application\Entity\ListingEntityCollection;
 
 class SqliteListingRepository implements ListingRepositoryInterface
 {

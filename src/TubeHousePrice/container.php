@@ -1,8 +1,8 @@
 <?php
 
 use TubeHousePrice\Application\DatabaseConnection\SqliteConnection;
-use TubeHousePrice\Application\ListingController;
-use TubeHousePrice\Listing\Repository\SqliteListingRepository;
+use TubeHousePrice\Application\Controller\ListingController;
+use TubeHousePrice\Application\Repository\SqliteListingRepository;
 
 $container = new League\Container\Container;
 

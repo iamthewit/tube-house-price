@@ -1,8 +1,8 @@
 
 <?php
 
-use TubeHousePrice\Application\ListingEntity;
-use TubeHousePrice\Application\ListingEntityCollection;
+use TubeHousePrice\Application\Entity\ListingEntity;
+use TubeHousePrice\Application\Entity\ListingEntityCollection;
 use PHPUnit\Framework\TestCase;
 
 class ListingEntityCollectionTest extends TestCase

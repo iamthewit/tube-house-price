@@ -2,8 +2,8 @@
 
 namespace TubeHousePrice\Application\Repository;
 
-use TubeHousePrice\Application\ListingEntity;
-use TubeHousePrice\Application\ListingEntityCollection;
+use TubeHousePrice\Application\Entity\ListingEntity;
+use TubeHousePrice\Application\Entity\ListingEntityCollection;
 
 interface ListingRepositoryInterface
 {

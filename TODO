@@ -5,8 +5,6 @@ TODO:
 - Add generic EntityCollection class that ListingEntityCollection extends
     - Can add the array iterator stuff in here
 
-- Move repository and entity code into the Application namespace
-
 - Split listing factory into two listing factories
     - one to create listings from listing entities
     - one to create listing entities from listings

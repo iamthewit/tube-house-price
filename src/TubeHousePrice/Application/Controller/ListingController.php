@@ -1,6 +1,6 @@
 <?php
 
-namespace TubeHousePrice\Application;
+namespace TubeHousePrice\Application\Controller;
 
 use TubeHousePrice\Application\Repository\ListingRepositoryInterface;
 
