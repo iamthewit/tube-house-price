@@ -16,7 +16,7 @@ class ListingEntityCollection extends AbstractEntityCollection
         unset($this->listings[$listing->getId()]);
     }
     
-    public function listings()
+    public function listings(): array
     {
         return $this->listings;
     }

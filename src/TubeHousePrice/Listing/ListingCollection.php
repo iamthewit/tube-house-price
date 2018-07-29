@@ -2,9 +2,10 @@
 
 namespace TubeHousePrice\Listing;
 
-use TubeHousePrice\Listing\Exception\ListingCollectionCreationException;
+use Traversable;
+use TubeHousePrice\Application\Exception\ListingCollectionCreationException;
 
-class ListingCollection
+class ListingCollection implements \IteratorAggregate, \Countable
 {
     private $listings;
 
@@ -46,7 +47,27 @@ class ListingCollection
 
         return $totalPrice / count($this->listings);
     }
-
+    
+    /**
+     * Retrieve an external iterator
+     * @link  http://php.net/manual/en/iteratoraggregate.getiterator.php
+     * @return Traversable An instance of an object implementing <b>Iterator</b> or
+     * <b>Traversable</b>
+     * @since 5.0.0
+     */
+    public function getIterator(): Traversable
+    {
+        return new \ArrayIterator($this->listings);
+    }
+    
+    /**
+     * @return int
+     */
+    public function count(): int
+    {
+        return count($this->listings);
+    }
+    
     private function addListing(Listing $listing)
     {
         $this->listings[] = $listing;

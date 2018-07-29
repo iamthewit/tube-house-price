@@ -2,8 +2,8 @@
 
 use PHPUnit\Framework\TestCase;
 
-use TubeHousePrice\Listing\Coordinate\Latitude;
-use TubeHousePrice\Listing\Coordinate\Longitude;
+use TubeHousePrice\Listing\Geo\Latitude;
+use TubeHousePrice\Listing\Geo\Longitude;
 use TubeHousePrice\Listing\Currency\PoundSterling;
 use TubeHousePrice\Listing\ListingCollection;
 use TubeHousePrice\Listing\Listing;

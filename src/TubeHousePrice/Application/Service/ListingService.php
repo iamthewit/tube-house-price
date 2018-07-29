@@ -3,12 +3,15 @@
 namespace TubeHousePrice\Application\Service;
 
 use TubeHousePrice\Application\Entity\ListingEntity;
+use TubeHousePrice\Application\Entity\ListingEntityCollection;
 use TubeHousePrice\Application\Factory\ListingEntityFactory;
 use TubeHousePrice\Application\Repository\ListingRepositoryInterface;
-use TubeHousePrice\Listing\Coordinate\Latitude;
-use TubeHousePrice\Listing\Coordinate\Longitude;
+use TubeHousePrice\Listing\Geo\BoundingBox;
+use TubeHousePrice\Listing\Geo\Latitude;
+use TubeHousePrice\Listing\Geo\Longitude;
 use TubeHousePrice\Listing\Currency\CurrencyFactory;
 use TubeHousePrice\Listing\Listing;
+use TubeHousePrice\Listing\ListingCollection;
 use TubeHousePrice\Listing\Location;
 use TubeHousePrice\Listing\Price;
 
@@ -16,7 +19,6 @@ class ListingService
 {
     private $listingRepository;
     
-    // TODO: DI
     public function __construct(ListingRepositoryInterface $listingRepository)
     {
         $this->listingRepository = $listingRepository;
@@ -34,6 +36,9 @@ class ListingService
         return $this->buildListingFromEntity($this->listingRepository->find($id));
     }
     
+    /**
+     * @param Listing $listing
+     */
     public function storeListing(Listing $listing)
     {
         // turn domain object into entity
@@ -43,10 +48,21 @@ class ListingService
         $this->listingRepository->commit($entity);
     }
     
-    public function getListingsWithinBoundingBox()
+    /**
+     * @param BoundingBox $boundingBox
+     *
+     * @return ListingCollection
+     * @throws \TubeHousePrice\Application\Exception\ListingNotFoundInRepositoryException
+     * @throws \TubeHousePrice\Listing\Currency\Exception\UnsupportedCurrencyException
+     */
+    public function getListingsWithinBoundingBox(BoundingBox $boundingBox): ListingCollection
     {
-        // TODO: create bounding box class
-        // move coordinates out of listing namespace (might as well move currency out too)
+        $entityCollection = $this->listingRepository->findWhere([
+            'latitude[<>]'  => [$boundingBox->minLatitude()->value(), $boundingBox->maxLatitude()->value()],
+            'longitude[<>]' => [$boundingBox->minLongitude()->value(), $boundingBox->maxLongitude()->value()],
+        ]);
+        
+        return $this->buildListingCollectionFromListingEntityCollection($entityCollection);
     }
     
     /**
@@ -67,5 +83,21 @@ class ListingService
         $location = Location::createFromLongitudeAndLatitude($longitude, $latitude);
         
         return Listing::createFromIdAndPriceAndLocation($listingEntity->getId(), $price, $location);
+    }
+    
+    /**
+     * @param ListingEntityCollection $entityCollection
+     *
+     * @return ListingCollection
+     * @throws \TubeHousePrice\Listing\Currency\Exception\UnsupportedCurrencyException
+     */
+    private function buildListingCollectionFromListingEntityCollection(ListingEntityCollection $entityCollection): ListingCollection
+    {
+        $listingArray = [];
+        foreach ($entityCollection->listings() as $entity) {
+            $listingArray[] = $this->buildListingFromEntity($entity);
+        }
+    
+        return ListingCollection::createCollectionFromArrayOfListings($listingArray);
     }
 }
