@@ -20,8 +20,8 @@ class ListingEntityFactory
         $listingEntity->setId($listing->id());
         $listingEntity->setCurrencyCode($listing->price()->currency()->code());
         $listingEntity->setCurrencyMinorUnitValue($listing->price()->minorUnitValue());
-        $listingEntity->setLongitude($listing->location()->longitude());
-        $listingEntity->setLatitude($listing->location()->latitude());
+        $listingEntity->setLongitude($listing->location()->longitude()->value());
+        $listingEntity->setLatitude($listing->location()->latitude()->value());
         
         return $listingEntity;
     }

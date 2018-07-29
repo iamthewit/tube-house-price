@@ -2,15 +2,15 @@
 
 namespace TubeHousePrice\Application\Controller;
 
-use TubeHousePrice\Application\Repository\ListingRepositoryInterface;
+use TubeHousePrice\Application\Service\ListingService;
 
 class ListingController
 {
-    public function __construct(ListingRepositoryInterface $listingRepository)
+    public function __construct(ListingService $listingService)
     {
         echo "Listing Controller";
-        $listingEntities = $listingRepository->findWhere(['currency_code' => 'QWERTY']);
+        $listing = $listingService->getListingById('5b5db22d9fa94');
         
-        var_dump($listingEntities);
+        var_dump($listing);
     }
 }

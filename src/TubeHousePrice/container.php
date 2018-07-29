@@ -3,6 +3,7 @@
 use TubeHousePrice\Application\DatabaseConnection\SqliteConnection;
 use TubeHousePrice\Application\Controller\ListingController;
 use TubeHousePrice\Application\Repository\SqliteListingRepository;
+use TubeHousePrice\Application\Service\ListingService;
 
 $container = new League\Container\Container;
 
@@ -16,8 +17,13 @@ $container->add('sqlite_listing_repository', function () use ($container) {
 });
 
 $container->add('listing_controller', function () use ($container) {
+    $listingService = $container->get('listing_service');
+    return new ListingController($listingService);
+});
+
+$container->add('listing_service', function () use ($container) {
     $listingRepository = $container->get('sqlite_listing_repository');
-    return new ListingController($listingRepository);
+    return new ListingService($listingRepository);
 });
 
 return $container;

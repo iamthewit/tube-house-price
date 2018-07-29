@@ -108,6 +108,15 @@ class SqliteListingRepositoryTest extends TestCase
     }
     
     /**
+     * @return SqliteListingRepository
+     */
+    private function getRepository(): SqliteListingRepository
+    {
+        $listingRepository = new SqliteListingRepository($this->databaseConnection());
+        return $listingRepository;
+    }
+    
+    /**
      * @return ListingEntity
      */
     private function createEntity(): ListingEntity
@@ -120,14 +129,4 @@ class SqliteListingRepositoryTest extends TestCase
         $listingEntity->setLongitude($this->faker->longitude);
         return $listingEntity;
     }
-    
-    /**
-     * @return SqliteListingRepository
-     */
-    private function getRepository(): SqliteListingRepository
-    {
-        $listingRepository = new SqliteListingRepository($this->databaseConnection());
-        return $listingRepository;
-    }
-    
 }

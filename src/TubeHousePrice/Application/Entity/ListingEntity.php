@@ -23,7 +23,7 @@ class ListingEntity implements EntityInterface
      *
      * @return ListingEntity
      */
-    public function setId($id): ListingEntity
+    public function setId(string $id): ListingEntity
     {
         // TODO: validation
         $this->id = $id;
@@ -43,7 +43,7 @@ class ListingEntity implements EntityInterface
      *
      * @return ListingEntity
      */
-    public function setCurrencyCode($currencyCode): ListingEntity
+    public function setCurrencyCode(string $currencyCode): ListingEntity
     {
         // TODO: validation
         $this->currencyCode = $currencyCode;
@@ -63,7 +63,7 @@ class ListingEntity implements EntityInterface
      *
      * @return ListingEntity
      */
-    public function setCurrencyMinorUnitValue($currencyMinorUnitValue): ListingEntity
+    public function setCurrencyMinorUnitValue(int $currencyMinorUnitValue): ListingEntity
     {
         // TODO: validation
         $this->currencyMinorUnitValue = $currencyMinorUnitValue;
@@ -83,7 +83,7 @@ class ListingEntity implements EntityInterface
      *
      * @return ListingEntity
      */
-    public function setLatitude($latitude): ListingEntity
+    public function setLatitude(float $latitude): ListingEntity
     {
         // TODO: validation
         $this->latitude = $latitude;
@@ -103,7 +103,7 @@ class ListingEntity implements EntityInterface
      *
      * @return ListingEntity
      */
-    public function setLongitude($longitude): ListingEntity
+    public function setLongitude(float $longitude): ListingEntity
     {
         // TODO: validation
         $this->longitude = $longitude;
