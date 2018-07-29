@@ -1,13 +1,5 @@
 TODO:
 
-- Add BoundingBox Class
-    - move coordinates out of listing namespace, use them in the bounding box class
-
-- Add ListingService Class
-    - Implement get listings within bounding box
-
-- Add array iterator code to AbstractEntityCollection class
-
 - Add validation to listing repository
 
 - When testing use in memory sqlite db
