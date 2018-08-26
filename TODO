@@ -1,5 +1,39 @@
 TODO:
 
+- Property Sales
+ - Can get historical price paid data from the government which will be nice for some stats,
+ but sales data doesn't fit the existing listing domain. In order to introduce sales data create
+ a new Sale object. In order to encapsulate Sale and Listing into a domain create a new Top Level
+ dir 'Property' move Currency and Geo under Property:
+
+ - Property
+    - Listing
+    - Sale
+    - Geo
+    - Currency
+
+ - Listings are properties currently being sold
+ - Sales are properties that have been sold
+ - Property object instead?
+  - Could use historical data to create an event store
+  - Could $propertyService->addPropertyToMarket($propertyId, $askingPrice)
+  - Sales and Listings become irrelevant, the current state of the property is either for sale or not
+  - Rename Listing Property and add additional properties to flesh it out
+
+- Property object:
+    - address - see if we cane asily geocode the lat/lng for location
+    - location
+    - sale price
+    - sale date
+
+- Event Sourcing
+    - Add some events:
+        - AddPropertyEvent
+        - PutPropertyOnMarketEvent
+        - SellPropertyEvent
+
+    - Store all events in DB
+
 - Add validation to listing repository
 
 - When testing use in memory sqlite db
@@ -32,3 +66,7 @@ Static Analysis
  - PHPStan?
 
 Code Coverage Report from PHPUnit
+
+XDebug
+
+Docker container

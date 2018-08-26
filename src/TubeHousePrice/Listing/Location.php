@@ -7,8 +7,14 @@ use TubeHousePrice\Listing\Geo\Longitude;
 
 class Location
 {
+    /**
+     * @var Longitude $longitude
+     */
     private $longitude;
-
+    
+    /**
+     * @var Latitude $latitude
+     */
     private $latitude;
 
     private function __construct(Longitude $longitude, Latitude $latitude)

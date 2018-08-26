@@ -1,0 +1,4 @@
+runtime: php72
+
+env_variables:
+  PROJECT_ROOT_PATH: '/srv'

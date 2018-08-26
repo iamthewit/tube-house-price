@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "TubeHousePrice\\": "src/TubeHousePrice/"
+            "TubeHousePrice\\": "src/TubeHousePrice/",
+            "Testing\\Factory\\": "tests/Factory"
         }
     },
     "require": {

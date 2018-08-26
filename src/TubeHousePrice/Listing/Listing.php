@@ -5,9 +5,15 @@ namespace TubeHousePrice\Listing;
 class Listing
 {
     private $id;
-
+    
+    /**
+     * @var Price $price
+     */
     private $price;
-
+    
+    /**
+     * @var Location $location
+     */
     private $location;
 
     private function __construct($id, Price $price, Location $location)

@@ -11,12 +11,12 @@ use TubeHousePrice\Listing\Price;
 
 class ListingTest extends TestCase
 {
-    public function testListingModelIsCreateFromPriceAndLocation()
+    public function testListingIsCreateFromPriceAndLocation()
     {
         $price = Price::createFromCurrencyAndMinorUnitValue(new PoundSterling(), 500000*100);
 
-        $longitude = new Longitude('	-0.118092');
-        $latitude = new Latitude('	51.509865');
+        $longitude = new Longitude('-0.118092');
+        $latitude = new Latitude('51.509865');
         $location = Location::createFromLongitudeAndLatitude($longitude, $latitude);
 
         $listing = Listing::createFromPriceAndLocation($price, $location);

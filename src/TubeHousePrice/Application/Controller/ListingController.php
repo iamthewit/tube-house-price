@@ -3,14 +3,16 @@
 namespace TubeHousePrice\Application\Controller;
 
 use TubeHousePrice\Application\Service\ListingService;
+use TubeHousePrice\Application\Transformer\ListingTransformer;
 
 class ListingController
 {
     public function __construct(ListingService $listingService)
     {
-        echo "Listing Controller";
-        $listing = $listingService->getListingById('5b5db22d9fa94');
+        $listing = $listingService->getListingById('5b5dd966e7ffa');
         
-        var_dump($listing);
+        $transformer = new ListingTransformer($listing);
+        
+        echo $transformer->toJson();
     }
 }
