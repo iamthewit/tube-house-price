@@ -1,57 +1,23 @@
 TODO:
 
-- Property Sales
- - Can get historical price paid data from the government which will be nice for some stats,
- but sales data doesn't fit the existing listing domain. In order to introduce sales data create
- a new Sale object. In order to encapsulate Sale and Listing into a domain create a new Top Level
- dir 'Property' move Currency and Geo under Property:
+- Start using a router
+    - setup routes for paging through listings, filtering listings
 
- - Property
-    - Listing
-    - Sale
-    - Geo
-    - Currency
+- Add some basic config
+    - define paths (resource path, db path etc)
 
- - Listings are properties currently being sold
- - Sales are properties that have been sold
- - Property object instead?
-  - Could use historical data to create an event store
-  - Could $propertyService->addPropertyToMarket($propertyId, $askingPrice)
-  - Sales and Listings become irrelevant, the current state of the property is either for sale or not
-  - Rename Listing Property and add additional properties to flesh it out
-
-- Property object:
-    - address - see if we cane asily geocode the lat/lng for location
-    - location
-    - sale price
-    - sale date
-
-- Event Sourcing
-    - Add some events:
-        - AddPropertyEvent
-        - PutPropertyOnMarketEvent
-        - SellPropertyEvent
-
-    - Store all events in DB
+- Tests
+    - Get in memory sqlite DB working for tests
+    - Move some phpunit bootstrapped stuff into custom test case (setup and teardown)
 
 - Add validation to listing repository
-
-- When testing use in memory sqlite db
-    - run migrations before each test
-    - tear down db after each test
 
 - Add timestamps to ListingEntity (created_at, updated_at)
     - create a trait for this instead of adding to the interface? or make an abstract EntityTimestamps class?
 
 - Move tests into namespaced directories
 
-- Add a router
-
 General Notes / Future Stuff:
-
-Database
-- Use in memory?
-- Migrations system? Run migrations before tests
 
 Listing Repository
 - Find sources to seed the DB. Property websites etc

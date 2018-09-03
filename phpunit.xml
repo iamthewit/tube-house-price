@@ -1,2 +1,5 @@
-<phpunit bootstrap="index.php">
+<phpunit bootstrap="phpunit-bootstrap.php">
+    <php>
+        <env name="SQLITE_DATABASE_PATH" value="tube_house_prices_unit_test.db" force="true"/>
+    </php>
 </phpunit>
