@@ -2,7 +2,9 @@
 require_once __DIR__.'/index.php';
 
 $rootPath = getenv('PROJECT_ROOT_PATH');
-$dbPath = $rootPath.'/resources/sqlite/database/'.getenv('SQLITE_DATABASE_FILENAME');
+
+$dbPath = \TubeHousePrice\Application\Config::get('paths.sqlite_database');
+$dbPath = $dbPath.'/'.getenv('SQLITE_DATABASE_FILENAME');
 
 // delete existing test DB
 if (file_exists($dbPath)) {
@@ -13,5 +15,7 @@ if (file_exists($dbPath)) {
 touch($dbPath);
 
 // migrate DB
+$migrationsPath = \TubeHousePrice\Application\Config::get('paths.sqlite_migrations');
+
 $conn = new \TubeHousePrice\Application\DatabaseConnection\SqliteConnection($dbPath);
-$conn->exec(file_get_contents($rootPath.'/resources/sqlite/migrations/migrations.sql'));
+$conn->exec(file_get_contents($migrationsPath.'/migrations.sql'));

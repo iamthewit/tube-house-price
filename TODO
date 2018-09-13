@@ -3,8 +3,7 @@ TODO:
 - Start using a router
     - setup routes for paging through listings, filtering listings
 
-- Add some basic config
-    - define paths (resource path, db path etc)
+- Add CRUD to ListingController
 
 - Tests
     - Get in memory sqlite DB working for tests

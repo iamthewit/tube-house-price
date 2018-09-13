@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use TubeHousePrice\Application\Config;
 use TubeHousePrice\Application\DatabaseConnection\SqliteConnection;
 use TubeHousePrice\Application\Entity\ListingEntity;
 use TubeHousePrice\Application\Repository\SqliteListingRepository;
@@ -112,9 +113,8 @@ class ListingServiceTest extends TestCase
      * @return SqliteConnection
      */
     private function databaseConnection(): SqliteConnection {
-        $pathToDatabase = getenv('PROJECT_ROOT_PATH')
-            .'/resources/sqlite/database/'
-            .getenv('SQLITE_DATABASE_FILENAME');
+        $dbPath = Config::get('paths.sqlite_database');
+        $pathToDatabase = $dbPath.'/'.getenv('SQLITE_DATABASE_FILENAME');
 
         return new SqliteConnection($pathToDatabase);
     }
