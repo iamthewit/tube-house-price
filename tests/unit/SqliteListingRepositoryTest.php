@@ -12,69 +12,69 @@ class SqliteListingRepositoryTest extends TestCase
 {
     /** @var \Faker\Generator */
     private $faker;
-    
+
     public function setUp()
     {
         $this->faker = Faker\Factory::create();
     }
-    
+
     public function testFind()
     {
         $listingRepository = $this->getRepository();
-    
+
         $listingEntity = $this->createEntity();
-    
+
         $listingRepository->commit($listingEntity);
-        
+
         $foundEntity = $listingRepository->find($listingEntity->getId());
-        
+
         $this->assertEquals($listingEntity, $foundEntity);
     }
-    
+
     public function testItThrowsExceptionWhenFindFails()
     {
         $listingRepository = $this->getRepository();
-    
+
         $listingEntity = $this->createEntity();
-    
+
         $listingRepository->commit($listingEntity);
-    
+
         $this->expectException(ListingNotFoundInRepositoryException::class);
-    
+
         $listingRepository->find('AAABBBCCC111222333');
     }
-    
+
     public function testFindWhere()
     {
         $listingRepository = $this->getRepository();
-    
+
         $listingEntity = $this->createEntity();
-    
+
         $listingRepository->commit($listingEntity);
-    
+
         $foundEntities = $listingRepository->findWhere(['latitude' => $listingEntity->getLatitude()]);
-    
+
         $this->assertInstanceOf(ListingEntityCollection::class, $foundEntities);
         $this->assertEquals($listingEntity, $foundEntities->listings()[$listingEntity->getId()]);
     }
-    
+
     public function testItThrowsExceptionWhenFindWhereFails()
     {
         $listingRepository = $this->getRepository();
-    
+
         $listingEntity = $this->createEntity();
-    
+
         $listingRepository->commit($listingEntity);
-    
+
         $this->expectException(ListingNotFoundInRepositoryException::class);
-        
+
         $listingRepository->findWhere(['currency_code' => 'BANK_OF_MUM_AND_DAD']);
     }
 
     public function testCommitInsertsNewRecord()
     {
         $listingRepository = $this->getRepository();
-    
+
         $listingEntity = $this->createEntity();
 
         $listingRepository->commit($listingEntity);
@@ -86,11 +86,11 @@ class SqliteListingRepositoryTest extends TestCase
     public function testCommitUpdatesExistingRecord()
     {
         $listingRepository = $this->getRepository();
-    
+
         $listingEntity = $this->createEntity();
-    
+
         $listingRepository->commit($listingEntity);
-    
+
         $listingEntity->setCurrencyCode('QWERTY');
 
         $listingRepository->commit($listingEntity);
@@ -103,10 +103,13 @@ class SqliteListingRepositoryTest extends TestCase
      * @return SqliteConnection
      */
     private function databaseConnection(): SqliteConnection {
-        $pathToDatabase = getenv('PROJECT_ROOT_PATH').getenv('SQLITE_DATABASE_PATH');
+        $pathToDatabase = getenv('PROJECT_ROOT_PATH')
+            .'/resources/sqlite/database/'
+            .getenv('SQLITE_DATABASE_FILENAME');
+
         return new SqliteConnection($pathToDatabase);
     }
-    
+
     /**
      * @return SqliteListingRepository
      */
@@ -115,7 +118,7 @@ class SqliteListingRepositoryTest extends TestCase
         $listingRepository = new SqliteListingRepository($this->databaseConnection());
         return $listingRepository;
     }
-    
+
     /**
      * @return ListingEntity
      */

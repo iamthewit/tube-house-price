@@ -8,7 +8,9 @@ use TubeHousePrice\Application\Service\ListingService;
 $container = new League\Container\Container;
 
 $container->add('sqlite_database_connection', function () {
-    $pathToDatabaseFile = getenv('PROJECT_ROOT_PATH').getenv('SQLITE_DATABASE_PATH');
+    $pathToDatabaseFile = getenv('PROJECT_ROOT_PATH')
+        .'/resources/sqlite/database/'
+        .getenv('SQLITE_DATABASE_FILENAME');
     return new SqliteConnection($pathToDatabaseFile);
 });
 
