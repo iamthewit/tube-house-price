@@ -18,12 +18,12 @@ use TubeHousePrice\Listing\Price;
 class ListingService
 {
     private $listingRepository;
-    
+
     public function __construct(ListingRepositoryInterface $listingRepository)
     {
         $this->listingRepository = $listingRepository;
     }
-    
+
     /**
      * @param string $id
      *
@@ -35,7 +35,7 @@ class ListingService
     {
         return $this->buildListingFromEntity($this->listingRepository->find($id));
     }
-    
+
     /**
      * @param Listing $listing
      */
@@ -43,11 +43,24 @@ class ListingService
     {
         // turn domain object into entity
         $entity = ListingEntityFactory::createListingEntity($listing);
-        
+
         // pass entity to repo to store
         $this->listingRepository->commit($entity);
     }
-    
+
+    /**
+     * @return ListingCollection
+     * @throws \TubeHousePrice\Application\Exception\ListingCollectionCreationException
+     * @throws \TubeHousePrice\Application\Exception\ListingNotFoundInRepositoryException
+     * @throws \TubeHousePrice\Listing\Currency\Exception\UnsupportedCurrencyException
+     */
+    public function getListings(): ListingCollection
+    {
+        $entityCollection = $this->listingRepository->findWhere([]);
+
+        return $this->buildListingCollectionFromListingEntityCollection($entityCollection);
+    }
+
     /**
      * @param BoundingBox $boundingBox
      *
@@ -62,10 +75,10 @@ class ListingService
             'latitude[<>]'  => [$boundingBox->minLatitude()->value(), $boundingBox->maxLatitude()->value()],
             'longitude[<>]' => [$boundingBox->minLongitude()->value(), $boundingBox->maxLongitude()->value()],
         ]);
-        
+
         return $this->buildListingCollectionFromListingEntityCollection($entityCollection);
     }
-    
+
     /**
      * Transform ListingEntity into Listing
      *
@@ -78,14 +91,14 @@ class ListingService
     {
         $currency = CurrencyFactory::build($listingEntity->getCurrencyCode());
         $price = Price::createFromCurrencyAndMinorUnitValue($currency, $listingEntity->getCurrencyMinorUnitValue());
-        
+
         $longitude = new Longitude($listingEntity->getLongitude());
         $latitude = new Latitude($listingEntity->getLatitude());
         $location = Location::createFromLongitudeAndLatitude($longitude, $latitude);
-        
+
         return Listing::createFromIdAndPriceAndLocation($listingEntity->getId(), $price, $location);
     }
-    
+
     /**
      * @param ListingEntityCollection $entityCollection
      *
@@ -99,7 +112,7 @@ class ListingService
         foreach ($entityCollection->listings() as $entity) {
             $listingArray[] = $this->buildListingFromEntity($entity);
         }
-    
+
         return ListingCollection::createCollectionFromArrayOfListings($listingArray);
     }
 }

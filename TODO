@@ -1,9 +1,18 @@
 TODO:
 
-- Start using a router
-    - setup routes for paging through listings, filtering listings
+- Router
+    - Separate route definition from code that deals with routing
+    - Employ http request / response package to make it easier to deal with setting response codes, headers etc
 
-- Add CRUD to ListingController
+Listings
+    - Add CRUD to ListingController
+    - Add integration tests for Controller responses
+
+Listing Service
+    - Get filtering working on getListings method
+
+Exception Handler
+    - Add some exception handling for anything uncaught from controllers
 
 - Tests
     - Get in memory sqlite DB working for tests

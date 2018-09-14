@@ -9,6 +9,4 @@ $dotenv->load();
 
 require_once __DIR__.'/container.php';
 
-// Enable to test the FE
-// TODO: use a router
-//return $container->get('listing_controller');
+require_once __DIR__.'/routes.php';

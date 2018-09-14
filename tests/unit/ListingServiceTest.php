@@ -11,6 +11,7 @@ use TubeHousePrice\Listing\Geo\Latitude;
 use TubeHousePrice\Listing\Geo\Longitude;
 use TubeHousePrice\Listing\Currency\CurrencyFactory;
 use TubeHousePrice\Listing\Listing;
+use TubeHousePrice\Listing\ListingCollection;
 use TubeHousePrice\Listing\Price;
 
 class ListingServiceTest extends TestCase
@@ -107,6 +108,21 @@ class ListingServiceTest extends TestCase
             $this->assertTrue(in_array($listing->id(), $insideIds));
             $this->assertFalse(in_array($listing->id(), $outsideIds));
         }
+    }
+
+    public function testGetListings()
+    {
+        // seed some listings
+        $count = 10;
+        for ($i = 0; $i<$count; $i++) {
+            $this->createEntity();
+        }
+
+        /** @var ListingCollection $listings */
+        $listings = $this->service->getListings();
+
+        $this->assertInstanceOf(ListingCollection::class, $listings);
+        $this->assertEquals($count, $listings->count());
     }
 
     /**
