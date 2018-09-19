@@ -27,7 +27,7 @@ class ListingEntityCollectionTest extends TestCase
         $collection->add($entity);
     
         // assert entity collection has array of entities containing added entity
-        $this->assertEquals([$entity->getId() => $entity], $collection->listings());
+        $this->assertEquals([$entity->getId() => $entity], $collection->items());
     }
     
     public function testAdd()
@@ -42,7 +42,7 @@ class ListingEntityCollectionTest extends TestCase
         $collection->add($entity);
         
         // assert entity collection has entity
-        $this->assertArrayHasKey($entity->getId(), $collection->listings());
+        $this->assertArrayHasKey($entity->getId(), $collection->items());
     }
     
     public function testRemove()
@@ -57,7 +57,7 @@ class ListingEntityCollectionTest extends TestCase
         $collection->remove($entity);
     
         // assert entity collection does not have entity
-        $this->assertArrayNotHasKey($entity->getId(), $collection->listings());
+        $this->assertArrayNotHasKey($entity->getId(), $collection->items());
     }
     
     private function createEntity()

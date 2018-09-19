@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 $rootPath = __DIR__.'/../../';
 
@@ -8,5 +8,3 @@ $dotenv = new Dotenv\Dotenv($rootPath);
 $dotenv->load();
 
 require_once __DIR__.'/container.php';
-
-require_once __DIR__.'/routes.php';

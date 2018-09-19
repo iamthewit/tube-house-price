@@ -109,7 +109,7 @@ class ListingService
     private function buildListingCollectionFromListingEntityCollection(ListingEntityCollection $entityCollection): ListingCollection
     {
         $listingArray = [];
-        foreach ($entityCollection->listings() as $entity) {
+        foreach ($entityCollection->items() as $entity) {
             $listingArray[] = $this->buildListingFromEntity($entity);
         }
 

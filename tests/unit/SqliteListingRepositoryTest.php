@@ -4,7 +4,6 @@ use PHPUnit\Framework\TestCase;
 
 use TubeHousePrice\Application\Config;
 use TubeHousePrice\Application\DatabaseConnection\SqliteConnection;
-use TubeHousePrice\Application\Exception\ListingNotFoundInRepositoryException;
 use TubeHousePrice\Application\Entity\ListingEntity;
 use TubeHousePrice\Application\Entity\ListingEntityCollection;
 use TubeHousePrice\Application\Repository\SqliteListingRepository;
@@ -17,8 +16,14 @@ class SqliteListingRepositoryTest extends TestCase
     public function setUp()
     {
         $this->faker = Faker\Factory::create();
+    
+        // delete all the listings in the table
+        $this->databaseConnection()->delete('listings', []);
     }
-
+    
+    /**
+     * @throws \TubeHousePrice\Application\Exception\ListingNotFoundInRepositoryException
+     */
     public function testFind()
     {
         $listingRepository = $this->getRepository();
@@ -32,19 +37,6 @@ class SqliteListingRepositoryTest extends TestCase
         $this->assertEquals($listingEntity, $foundEntity);
     }
 
-    public function testItThrowsExceptionWhenFindFails()
-    {
-        $listingRepository = $this->getRepository();
-
-        $listingEntity = $this->createEntity();
-
-        $listingRepository->commit($listingEntity);
-
-        $this->expectException(ListingNotFoundInRepositoryException::class);
-
-        $listingRepository->find('AAABBBCCC111222333');
-    }
-
     public function testFindWhere()
     {
         $listingRepository = $this->getRepository();
@@ -56,20 +48,17 @@ class SqliteListingRepositoryTest extends TestCase
         $foundEntities = $listingRepository->findWhere(['latitude' => $listingEntity->getLatitude()]);
 
         $this->assertInstanceOf(ListingEntityCollection::class, $foundEntities);
-        $this->assertEquals($listingEntity, $foundEntities->listings()[$listingEntity->getId()]);
+        $this->assertEquals($listingEntity, $foundEntities->items()[$listingEntity->getId()]);
     }
-
-    public function testItThrowsExceptionWhenFindWhereFails()
+    
+    public function testFindWhereReturnsEmptyArrayWhenNoListingsCanBeFound()
     {
         $listingRepository = $this->getRepository();
-
-        $listingEntity = $this->createEntity();
-
-        $listingRepository->commit($listingEntity);
-
-        $this->expectException(ListingNotFoundInRepositoryException::class);
-
-        $listingRepository->findWhere(['currency_code' => 'BANK_OF_MUM_AND_DAD']);
+        
+        $foundEntities = $listingRepository->findWhere([]);
+        
+        $this->assertInstanceOf(ListingEntityCollection::class, $foundEntities);
+        $this->assertEquals([], $foundEntities->items());
     }
 
     public function testCommitInsertsNewRecord()

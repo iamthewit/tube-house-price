@@ -46,16 +46,11 @@ class SqliteListingRepository implements ListingRepositoryInterface
      * @param array $where
      *
      * @return ListingEntityCollection
-     * @throws ListingNotFoundInRepositoryException
      */
     public function findWhere(array $where): ListingEntityCollection
     {
         $results = $this->databaseConnection->select($this->tableName, $this->columns, $where);
     
-        if(!$results || count($results) === 0) {
-            throw new ListingNotFoundInRepositoryException();
-        }
-        
         $collection = new ListingEntityCollection();
         
         foreach ($results as $result) {

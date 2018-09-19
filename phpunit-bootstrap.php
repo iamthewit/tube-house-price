@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__.'/index.php';
+
+require_once __DIR__.'/src/TubeHousePrice/bootstrap.php';
 
 $rootPath = getenv('PROJECT_ROOT_PATH');
 
