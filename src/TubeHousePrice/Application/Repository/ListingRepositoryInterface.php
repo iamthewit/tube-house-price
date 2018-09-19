@@ -20,7 +20,6 @@ interface ListingRepositoryInterface
      * @param array $where
      *
      * @return ListingEntityCollection
-     * @throws ListingNotFoundInRepositoryException
      */
     public function findWhere(array $where): ListingEntityCollection;
     

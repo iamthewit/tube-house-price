@@ -51,7 +51,6 @@ class ListingService
     /**
      * @return ListingCollection
      * @throws \TubeHousePrice\Application\Exception\ListingCollectionCreationException
-     * @throws \TubeHousePrice\Application\Exception\ListingNotFoundInRepositoryException
      * @throws \TubeHousePrice\Listing\Currency\Exception\UnsupportedCurrencyException
      */
     public function getListings(): ListingCollection
@@ -65,7 +64,6 @@ class ListingService
      * @param BoundingBox $boundingBox
      *
      * @return ListingCollection
-     * @throws \TubeHousePrice\Application\Exception\ListingNotFoundInRepositoryException
      * @throws \TubeHousePrice\Listing\Currency\Exception\UnsupportedCurrencyException
      * @throws \TubeHousePrice\Application\Exception\ListingCollectionCreationException
      */

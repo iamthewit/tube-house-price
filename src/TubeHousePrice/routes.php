@@ -30,6 +30,6 @@ switch ($routeInfo[0]) {
 
         list($controller, $method) = explode('.', $handler);
 
-        echo $container->get($controller)->$method();
+        $container->get($controller)->$method();
         break;
 }
