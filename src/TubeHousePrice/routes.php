@@ -4,17 +4,9 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/listings', 'listing_controller.index');
 });
 
-// Fetch method and URI from somewhere
-$httpMethod = $_SERVER['REQUEST_METHOD'];
-$uri = $_SERVER['REQUEST_URI'];
+$request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
 
-// Strip query string (?foo=bar) and decode URI
-if (false !== $pos = strpos($uri, '?')) {
-    $uri = substr($uri, 0, $pos);
-}
-$uri = rawurldecode($uri);
-
-$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+$routeInfo = $dispatcher->dispatch($request->getMethod(), $request->getPathInfo());
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         // ... 404 Not Found

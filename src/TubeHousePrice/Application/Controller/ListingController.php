@@ -15,7 +15,7 @@ class ListingController extends Controller
         parent::__construct();
         $this->listingService = $listingService;
     }
-    
+
     /**
      * @throws \TubeHousePrice\Application\Exception\ListingCollectionCreationException
      * @throws \TubeHousePrice\Listing\Currency\Exception\UnsupportedCurrencyException
@@ -29,7 +29,7 @@ class ListingController extends Controller
         $response->setContent($transformer->toJson());
         $response->headers->set('Content-Type', 'application/json');
         $response->setStatusCode(Response::HTTP_OK);
-    
+
         $response->send();
     }
 }

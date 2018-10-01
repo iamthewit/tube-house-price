@@ -10,7 +10,7 @@ class ListingCollectionTransformer implements TransformerInterface
      * @var ListingCollection $collection
      */
     private $collection;
-    
+
     public function __construct(ListingCollection $collection)
     {
         $this->collection = $collection;
@@ -25,12 +25,17 @@ class ListingCollectionTransformer implements TransformerInterface
             $listingTransformer = new ListingTransformer($listing);
             $items[] = $listingTransformer->toArray();
         }
-        
+
         return [
-            'items' => $items,
+            'data' => [
+                'items' => $items,
+                'meta'  => [
+                    'average_price' => $this->collection->averagePrice(),
+                ]
+            ]
         ];
     }
-    
+
     /**
      * @return string
      */
