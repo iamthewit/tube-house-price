@@ -11,19 +11,19 @@ class ListingCollectionTransformerTest extends TestCase
      * @var ListingFactory $listingFactory
      */
     private $listingFactory;
-    
+
     public function setUp()
     {
         $this->listingFactory = new ListingFactory();
     }
-    
+
     public function testToJson()
     {
         $listings = $this->listingFactory->createListings(10);
         $listingCollection = ListingCollection::createCollectionFromArrayOfListings($listings);
-        
+
         $transformer = new ListingCollectionTransformer($listingCollection);
-        
+
         $items = [];
         foreach ($listingCollection as $listing) {
             $items[] = [
@@ -39,17 +39,26 @@ class ListingCollectionTransformerTest extends TestCase
                 ]
             ];
         }
-        
-        $this->assertEquals(json_encode(['items' => $items]), $transformer->toJson());
+
+
+        $expected = [
+            'data' => [
+                'items' => $items,
+                'meta' => [
+                    'average_price' => $listingCollection->averagePrice(),
+                ]
+            ],
+        ];
+        $this->assertEquals(json_encode($expected), $transformer->toJson());
     }
-    
+
     public function testToArray()
     {
         $listings = $this->listingFactory->createListings(10);
         $listingCollection = ListingCollection::createCollectionFromArrayOfListings($listings);
-    
+
         $transformer = new ListingCollectionTransformer($listingCollection);
-    
+
         $items = [];
         foreach ($listingCollection as $listing) {
             $items[] = [
@@ -65,9 +74,17 @@ class ListingCollectionTransformerTest extends TestCase
                 ]
             ];
         }
-    
-        $this->assertEquals(['items' => $items], $transformer->toArray());
+
+        $expected = [
+            'data' => [
+                'items' => $items,
+                'meta' => [
+                    'average_price' => $listingCollection->averagePrice(),
+                ]
+            ],
+        ];
+        $this->assertEquals($expected, $transformer->toArray());
     }
-    
-    
+
+
 }
