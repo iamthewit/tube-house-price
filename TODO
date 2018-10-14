@@ -20,8 +20,9 @@ Exception Handler
 
 - Add validation to listing repository
 
-- Add timestamps to ListingEntity (created_at, updated_at)
-    - create a trait for this instead of adding to the interface? or make an abstract EntityTimestamps class?
+- Timestamp Listings when they are saved
+    - when getting a listing from the DB get the latest copy of a list
+    - save a new copy of a listing each time it is modified and saved
 
 - Move tests into namespaced directories
 
